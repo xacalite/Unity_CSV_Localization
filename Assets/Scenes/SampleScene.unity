@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 1856752849}
   - component: {fileID: 1856752851}
   - component: {fileID: 1856752850}
+  - component: {fileID: 1856752852}
   m_Layer: 5
   m_Name: Text (2)
   m_TagString: Untagged
@@ -552,6 +553,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856752848}
   m_CullTransparentMesh: 0
+--- !u!114 &1856752852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856752848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda9ceb093f2fe345a602b5181eea5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: FAREWELL
 --- !u!1 &2089337715
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +577,7 @@ GameObject:
   - component: {fileID: 2089337716}
   - component: {fileID: 2089337718}
   - component: {fileID: 2089337717}
+  - component: {fileID: 2089337719}
   m_Layer: 5
   m_Name: Text (1)
   m_TagString: Untagged
@@ -631,6 +646,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089337715}
   m_CullTransparentMesh: 0
+--- !u!114 &2089337719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089337715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda9ceb093f2fe345a602b5181eea5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: SMALLTALK
 --- !u!1 &2109769481
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +670,7 @@ GameObject:
   - component: {fileID: 2109769482}
   - component: {fileID: 2109769484}
   - component: {fileID: 2109769483}
+  - component: {fileID: 2109769485}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -710,3 +739,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109769481}
   m_CullTransparentMesh: 0
+--- !u!114 &2109769485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109769481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda9ceb093f2fe345a602b5181eea5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationKey: GREETING

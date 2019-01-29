@@ -7,9 +7,7 @@ using System;
 public class Localization : MonoBehaviour
 {
     struct LocEntry {
-        string english;
-        string french;
-        string spanish;
+        public string english, french, spanish;
 
         public LocEntry(string l1, string l2, string l3)
         {
@@ -19,11 +17,17 @@ public class Localization : MonoBehaviour
         }
     }
 
-    private Dictionary<string, LocEntry> localization;
+    private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
+    private static Dictionary<string, LocEntry> localization;
     
     // Start is called before the first frame update
     void Awake()
     {
+        if (string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName))) 
+        {
+            PlayerPrefs.SetString(locPrefName, "English");
+        }
+
         string fileText = "";
 
         // try getting the localization data
@@ -47,8 +51,7 @@ public class Localization : MonoBehaviour
         localization = new Dictionary<string, LocEntry>();
         //Debug.Log(fileText);
         string[] lines = fileText.Split(new[] { Environment.NewLine },
-    StringSplitOptions.None);
-
+                                        StringSplitOptions.None);
 
         for (int i = 0; i < lines.Length - 1; i++) // split method grabs an extra empty line so minus 1 to loop
         {
@@ -66,7 +69,6 @@ public class Localization : MonoBehaviour
             LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]); 
             localization.Add(key, locEntry);
         }
-        Debug.Log(localization.ToString());
     }
 
     private string GetCSVFilePath()
@@ -80,5 +82,40 @@ public class Localization : MonoBehaviour
 #else
         return Application.dataPath +"/"+"Saved_Inventory.csv";
 #endif
+    }
+
+    public static void SetLanguage(string language)
+    {
+        PlayerPrefs.SetString(locPrefName, language);
+    }
+
+
+    public static string GetValueByKey(string key)
+    {
+        LocEntry entry = new LocEntry();
+
+        if (localization == null)
+        {
+            Debug.Log("Localization dictionary is null; ensure Localization.cs is before LocalizationText.cs in Script Execution Order");
+            return "LOC_ERROR_0";
+        }
+        localization.TryGetValue(key, out entry);
+
+        if (string.IsNullOrEmpty(entry.english))
+        {
+            return "LOC_ERROR_1";
+        }
+
+        switch (PlayerPrefs.GetString("Language"))
+        {
+            case "English":
+                return entry.english;
+            case "French":
+                return entry.french;
+            case "Spanish":
+                return entry.spanish;
+            default:
+                return entry.english;
+        }
     }
 }
