@@ -50,7 +50,7 @@ public class Localization : MonoBehaviour
         string[] lines = localizationText.text.Split(new[] { Environment.NewLine },
                                         StringSplitOptions.None);
 
-        for (int i = 0; i < lines.Length - 1; i++) // split method grabs an extra empty line so minus 1 to loop
+        for (int i = 0; i < lines.Length; i++) // split method grabs an extra empty line so minus 1 to loop
         {
             Debug.Log(lines[i]);
             // this is a hard-coded dependency on number of languages, so need to modify this when adding new languages to the LocEntry struct
