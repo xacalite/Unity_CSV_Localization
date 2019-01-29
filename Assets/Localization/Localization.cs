@@ -32,8 +32,8 @@ public class Localization : MonoBehaviour
             PlayerPrefs.SetString(locPrefName, "English");
         }
 
-        string csvPath = "Localization";
-        localizationText = (TextAsset)Resources.Load(csvPath);
+        string csvFileName = "Localization";
+        localizationText = (TextAsset)Resources.Load(csvFileName);
         Debug.Log(localizationText.text);
 
         if (string.IsNullOrEmpty(localizationText.text))
@@ -52,14 +52,16 @@ public class Localization : MonoBehaviour
 
         for (int i = 0; i < lines.Length; i++) // split method grabs an extra empty line so minus 1 to loop
         {
-            Debug.Log(lines[i]);
+            //Debug.Log(lines[i]);
             // this is a hard-coded dependency on number of languages, so need to modify this when adding new languages to the LocEntry struct
             string[] keyAndTranslations = lines[i].Split("," [0]);
 
+            /*
             for (int f = 0; f < keyAndTranslations.Length; f++)
             {
                 Debug.Log(keyAndTranslations[f]);
             }
+            */
 
             //Debug.Log(keyAndTranslations.Length);
             string key = keyAndTranslations[0];
@@ -68,19 +70,6 @@ public class Localization : MonoBehaviour
         }
 
         logText.text += "Localization dictionary loaded from CSV";
-    }
-
-    private string GetCSVFilePath()
-    {
-#if UNITY_EDITOR
-        return Application.dataPath + "/Localization/" + "Localization.csv";
-#elif UNITY_ANDROID
-        return Application.persistentDataPath+"Localization.csv";
-#elif UNITY_IPHONE
-        return Application.persistentDataPath+"/"+"Localization.csv";
-#else
-        return Application.dataPath +"/"+"Saved_Inventory.csv";
-#endif
     }
 
     public static void SetLanguage(string language)
