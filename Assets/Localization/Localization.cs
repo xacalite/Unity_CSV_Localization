@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class Localization : MonoBehaviour
 {
+    public Text logText;
+    private TextAsset localizationText;
+
     struct LocEntry {
         public string english, french, spanish;
 
@@ -28,29 +32,22 @@ public class Localization : MonoBehaviour
             PlayerPrefs.SetString(locPrefName, "English");
         }
 
-        string fileText = "";
+        string csvPath = "Localization";
+        localizationText = (TextAsset)Resources.Load(csvPath);
+        Debug.Log(localizationText.text);
 
-        // try getting the localization data
-        try
+        if (string.IsNullOrEmpty(localizationText.text))
         {
-            fileText = File.ReadAllText(GetCSVFilePath());
-        }
-        catch
-        {
-            Debug.Log("Error while attempting to load localization CSV");
-            return;
-        }
-
-        if (string.IsNullOrEmpty(fileText))
-        {
-            Debug.Log("Failed to find any localization data");
+            string nullContentError = "Failed to find any localization data";
+            Debug.Log(nullContentError);
+            logText.text += "nullContentError";
             return;
         }
 
         // if data is retrieved, split up text from CSV file
         localization = new Dictionary<string, LocEntry>();
         //Debug.Log(fileText);
-        string[] lines = fileText.Split(new[] { Environment.NewLine },
+        string[] lines = localizationText.text.Split(new[] { Environment.NewLine },
                                         StringSplitOptions.None);
 
         for (int i = 0; i < lines.Length - 1; i++) // split method grabs an extra empty line so minus 1 to loop
@@ -69,6 +66,8 @@ public class Localization : MonoBehaviour
             LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]); 
             localization.Add(key, locEntry);
         }
+
+        logText.text += "Localization dictionary loaded from CSV";
     }
 
     private string GetCSVFilePath()
@@ -96,6 +95,7 @@ public class Localization : MonoBehaviour
 
         if (localization == null)
         {
+
             Debug.Log("Localization dictionary is null; ensure Localization.cs is before LocalizationText.cs in Script Execution Order");
             return "LOC_ERROR_0";
         }
