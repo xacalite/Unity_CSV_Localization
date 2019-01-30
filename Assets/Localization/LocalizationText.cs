@@ -13,5 +13,17 @@ public class LocalizationText : MonoBehaviour
     {
         textToLocalize = GetComponent<Text>();
         textToLocalize.text = Localization.GetValueByKey(localizationKey);
+        Localization.OnLanguageChanged += ChangeText;
+    }
+
+    private void OnDisable()
+    {
+        Localization.OnLanguageChanged -= ChangeText;
+    }
+
+    void ChangeText(int index)
+    {
+        textToLocalize.text = Localization.GetValueByKey(localizationKey);
     }
 }
+

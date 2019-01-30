@@ -23,7 +23,10 @@ public class Localization : MonoBehaviour
 
     private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
     private static Dictionary<string, LocEntry> localization;
-    
+
+    public delegate void LanguageChanged(int index);
+    public static event LanguageChanged OnLanguageChanged;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -106,5 +109,39 @@ public class Localization : MonoBehaviour
             default:
                 return entry.english;
         }
+    }
+
+    public static bool TrySetLanguageByIndex(int languageIndex)
+    {
+        string languageToSet = "English"; // default to English if index unsupported
+        bool success = true; ; // only unsuccessful if default case is reached
+        switch (languageIndex)
+        {
+            case 0:
+                languageToSet = "English";
+                break;
+            case 1:
+                languageToSet = "French";
+                break;
+            case 2:
+                languageToSet = "Spanish";
+                break;
+            default:
+                success = false;
+                break;
+        }
+        PlayerPrefs.SetString(locPrefName, languageToSet);
+        Debug.Log("Language set to " + PlayerPrefs.GetString(locPrefName));
+
+        if (OnLanguageChanged != null) {
+            OnLanguageChanged(languageIndex);
+            Debug.Log("Broadcast change to Localization Text objects");
+        }
+        else
+        {
+            Debug.Log("Failed to broadcast language change; are there any active LocalizationTexts in the scene?");
+        }
+
+        return success;
     }
 }
