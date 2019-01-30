@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Localization/LocalizationDemo.unity
+    guid: 79a3c998a2875ef42871d2618930e97f
   m_configObjects: {}
