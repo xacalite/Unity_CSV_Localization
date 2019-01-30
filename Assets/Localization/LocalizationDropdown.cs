@@ -26,7 +26,7 @@ public class LocalizationDropdown : MonoBehaviour
         if (success) { return; }
         else
         {
-            Debug.LogError("Dropdwon value does not correspond to a supported language");
+            Debug.LogError("Dropdown value does not correspond to a supported language");
             return;
         }
     }
@@ -37,5 +37,14 @@ public class LocalizationDropdown : MonoBehaviour
         dropdown.options.Add(new Dropdown.OptionData(le.languages[0]));
         dropdown.options.Add(new Dropdown.OptionData(le.languages[1]));
         dropdown.options.Add(new Dropdown.OptionData(le.languages[2]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[3]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[4]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[5]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[6]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[7]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[8]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[9]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[10]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[11]));
     }
 }
