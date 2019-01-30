@@ -12,7 +12,7 @@ public class LocalizationEditor : Editor
         LocalizationTools localizationTools = (LocalizationTools)target;
         if (GUILayout.Button("Replace comma seperator with asterix in localization csv"))
         {
-            localizationTools.ReplaceCharInLocCSV(",", "*");
+            localizationTools.ReplaceCharInLocCSV();
         }
     }
 }
