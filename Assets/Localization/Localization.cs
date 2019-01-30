@@ -18,16 +18,6 @@ public class Localization : MonoBehaviour
         {
             translations = supportedLanguages;
         }
-        /*
-        public string english, french, spanish;
-
-        public LocEntry(string l1, string l2, string l3)
-        {
-            english = l1;
-            french = l2;
-            spanish = l3;
-        }
-        */
     }
 
     private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
@@ -123,6 +113,7 @@ public class Localization : MonoBehaviour
             return "LOC_ERROR_1";
         }
 
+        // To-do: last remaining hardcoded string dependency; these values must match those for the "LANGUAGE" key in the csv file
         switch (PlayerPrefs.GetString("Language"))
         {
             case "English":
@@ -157,49 +148,18 @@ public class Localization : MonoBehaviour
     public static bool TrySetLanguageByIndex(int languageIndex)
     {
         string languageToSet = "English"; // default to English if index unsupported
-        bool success = true; ; // only unsuccessful if default case is reached
-        switch (languageIndex)
+        bool success; // only unsuccessful if default case is reached
+
+        LocEntry languageEntry = GetLocEntryForKey("LANGUAGE");
+        if (languageIndex >= languageEntry.translations.Length)
         {
-            case 0:
-                languageToSet = "English"; // English
-                break;
-            case 1:
-                languageToSet = "Francés"; // French
-                break;
-            case 2:
-                languageToSet = "Español"; // Spanish
-                break;
-            case 3:
-                languageToSet = "Portugués"; // Portuguese
-                break;
-            case 4:
-                languageToSet = "Deutsche"; // German
-                break;
-            case 5:
-                languageToSet = "中文"; // Chinese
-                break;
-            case 6:
-                languageToSet = "日本人"; // Japonese
-                break;
-            case 7:
-                languageToSet = "한국어"; // Korean
-                break;
-            case 8:
-                languageToSet = "Indonesia"; // Indonesia
-                break;
-            case 9:
-                languageToSet = "हिंदी"; // Hindi
-                break;
-            case 10:
-                languageToSet = "Pусский"; // Russian
-                break;
-            case 11:
-                languageToSet = "अरबी भाषा"; // Arabic
-                break;
-            default:
-                success = false;
-                break;
+            success = false;
         }
+        else
+        {
+            success = true;
+        }
+        languageToSet = languageEntry.translations[languageIndex];
         PlayerPrefs.SetString(locPrefName, languageToSet);
         Debug.Log("Language set to " + PlayerPrefs.GetString(locPrefName));
 
@@ -211,7 +171,6 @@ public class Localization : MonoBehaviour
         {
             Debug.Log("Failed to broadcast language change; are there any active LocalizationTexts in the scene?");
         }
-
         return success;
     }
 
