@@ -62,7 +62,7 @@ public class Localization : MonoBehaviour
         {
             //Debug.Log(lines[i]);
             // this is a hard-coded dependency on number of languages, so need to modify this when adding new languages to the LocEntry struct
-            string[] keyAndTranslations = lines[i].Split("," [0]);
+            string[] keyAndTranslations = lines[i].Split("*" [0]);
 
             //Debug.Log(keyAndTranslations.Length);
             string key = keyAndTranslations[0];
