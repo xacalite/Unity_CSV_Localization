@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Localization : MonoBehaviour
 {
-    public Text logText;
     private TextAsset localizationText;
 
     public struct LocEntry {
@@ -49,7 +48,6 @@ public class Localization : MonoBehaviour
         {
             string nullContentError = "Failed to find any localization data";
             Debug.Log(nullContentError);
-            logText.text += "nullContentError";
             return;
         }
 
@@ -79,8 +77,6 @@ public class Localization : MonoBehaviour
 
             localization.Add(key, locEntry);
         }
-
-        logText.text += "Localization dictionary loaded from CSV";
     }
 
     public static void SetLanguage(string language)
