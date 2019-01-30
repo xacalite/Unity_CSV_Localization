@@ -38,7 +38,7 @@ public class Localization : MonoBehaviour
         localizationText = (TextAsset)Resources.Load(csvFileName);
         try
         {
-            Debug.Log(localizationText.text);
+            //Debug.Log(localizationText.text);
         }
         catch
         {
@@ -165,7 +165,7 @@ public class Localization : MonoBehaviour
 
         if (OnLanguageChanged != null) {
             OnLanguageChanged(languageIndex);
-            Debug.Log("Broadcast change to Localization Text objects");
+            //Debug.Log("Broadcast change to Localization Text objects");
         }
         else
         {
