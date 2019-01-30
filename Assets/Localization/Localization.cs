@@ -12,11 +12,11 @@ public class Localization : MonoBehaviour
 
     public struct LocEntry {
 
-        public string[] languages;
+        public string[] translations;
 
         public LocEntry(string[] supportedLanguages)
         {
-            languages = supportedLanguages;
+            translations = supportedLanguages;
         }
         /*
         public string english, french, spanish;
@@ -106,7 +106,7 @@ public class Localization : MonoBehaviour
         return entry;
     }
 
-    public static string GetValueByKey(string key)
+    public static string GetTranslationByKey(string key)
     {
         LocEntry entry = new LocEntry();
 
@@ -118,7 +118,7 @@ public class Localization : MonoBehaviour
         }
         localization.TryGetValue(key, out entry);
 
-        if (entry.languages == null)
+        if (entry.translations == null)
         {
             return "LOC_ERROR_1";
         }
@@ -126,31 +126,31 @@ public class Localization : MonoBehaviour
         switch (PlayerPrefs.GetString("Language"))
         {
             case "English":
-                return entry.languages[0];
+                return entry.translations[0];
             case "Francés":
-                return entry.languages[1];
+                return entry.translations[1];
             case "Español":
-                return entry.languages[2];
+                return entry.translations[2];
             case "Portugués":
-                return entry.languages[3];
+                return entry.translations[3];
             case "Deutsche":
-                return entry.languages[4];
+                return entry.translations[4];
             case "中文":
-                return entry.languages[5];
+                return entry.translations[5];
             case "日本人":
-                return entry.languages[6];
+                return entry.translations[6];
             case "한국어":
-                return entry.languages[7];
+                return entry.translations[7];
             case "Indonesia":
-                return entry.languages[8];
+                return entry.translations[8];
             case "हिं":
-                return entry.languages[9];
+                return entry.translations[9];
             case "Pусский":
-                return entry.languages[10];
+                return entry.translations[10];
             case "अरबी भाषा":
-                return entry.languages[11];
+                return entry.translations[11];
             default:
-                return entry.languages[0];
+                return entry.translations[0];
         }
     }
 
@@ -213,5 +213,20 @@ public class Localization : MonoBehaviour
         }
 
         return success;
+    }
+
+    public static int GetIndexFromPlayerPref()
+    {
+        string playerPrefLanguage = PlayerPrefs.GetString(locPrefName);
+        LocEntry languageEntry = GetLocEntryForKey("LANGUAGE");
+        for (int i = 0; i < languageEntry.translations.Length; i++)
+        {
+            if (languageEntry.translations[i] == playerPrefLanguage)
+            {
+                return i;
+            }
+        }
+        Debug.Log("Failed to get index from player pref");
+        return -1;
     }
 }

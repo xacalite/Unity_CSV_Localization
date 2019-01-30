@@ -17,6 +17,7 @@ public class LocalizationDropdown : MonoBehaviour
         dropdown = GetComponent<Dropdown>();
         Localization.LocEntry locEntry = Localization.GetLocEntryForKey("LANGUAGE");
         PopulateOptions(locEntry);
+        dropdown.value = Localization.GetIndexFromPlayerPref();
         dropdown.onValueChanged.AddListener(OnLanguageIndexChanged);
     }
 
@@ -34,17 +35,10 @@ public class LocalizationDropdown : MonoBehaviour
     private void PopulateOptions(Localization.LocEntry le)
     {
         dropdown.options.Clear();
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[0]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[1]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[2]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[3]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[4]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[5]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[6]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[7]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[8]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[9]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[10]));
-        dropdown.options.Add(new Dropdown.OptionData(le.languages[11]));
+
+        for (int i = 0; i < le.translations.Length; i++)
+        {
+            dropdown.options.Add(new Dropdown.OptionData(le.translations[i]));
+        }
     }
 }

@@ -12,7 +12,7 @@ public class LocalizationText : MonoBehaviour
     private void OnEnable()
     {
         textToLocalize = GetComponent<Text>();
-        textToLocalize.text = Localization.GetValueByKey(localizationKey);
+        textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
         Localization.OnLanguageChanged += ChangeText;
     }
 
@@ -23,7 +23,7 @@ public class LocalizationText : MonoBehaviour
 
     void ChangeText(int index)
     {
-        textToLocalize.text = Localization.GetValueByKey(localizationKey);
+        textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
     }
 }
 
