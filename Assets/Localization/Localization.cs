@@ -11,6 +11,14 @@ public class Localization : MonoBehaviour
     private TextAsset localizationText;
 
     public struct LocEntry {
+
+        public string[] languages;
+
+        public LocEntry(string[] supportedLanguages)
+        {
+            languages = supportedLanguages;
+        }
+        /*
         public string english, french, spanish;
 
         public LocEntry(string l1, string l2, string l3)
@@ -19,6 +27,7 @@ public class Localization : MonoBehaviour
             french = l2;
             spanish = l3;
         }
+        */
     }
 
     private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
@@ -37,7 +46,14 @@ public class Localization : MonoBehaviour
 
         string csvFileName = "Localization";
         localizationText = (TextAsset)Resources.Load(csvFileName);
-        Debug.Log(localizationText.text);
+        try
+        {
+            Debug.Log(localizationText.text);
+        }
+        catch
+        {
+            Debug.LogError("Null reference exception on localizationText; is the csv file open and locked so it can't be used by Unity?");
+        }
 
         if (string.IsNullOrEmpty(localizationText.text))
         {
@@ -62,8 +78,14 @@ public class Localization : MonoBehaviour
             //Debug.Log(keyAndTranslations.Length);
             string key = keyAndTranslations[0];
 
-            // if line below throws an exception, check the Localization.csv file to ensure there is not empty line after the translations (that seems to happen sometimes on saving/export the csv)
-            LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]);
+            // if block below throws an exception, check the Localization.csv file to ensure there is not empty line after the translations (that seems to happen sometimes on saving/export the csv)
+            List<string> supportedLanguageTranslations = new List<string>();
+            for (int t = 1; t < keyAndTranslations.Length; t++)
+            {
+                supportedLanguageTranslations.Add(keyAndTranslations[t]);
+            }
+            LocEntry locEntry = new LocEntry(supportedLanguageTranslations.ToArray());
+            //LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]);
 
             localization.Add(key, locEntry);
         }
@@ -96,7 +118,7 @@ public class Localization : MonoBehaviour
         }
         localization.TryGetValue(key, out entry);
 
-        if (string.IsNullOrEmpty(entry.english))
+        if (entry.languages == null)
         {
             return "LOC_ERROR_1";
         }
@@ -104,13 +126,31 @@ public class Localization : MonoBehaviour
         switch (PlayerPrefs.GetString("Language"))
         {
             case "English":
-                return entry.english;
-            case "French":
-                return entry.french;
-            case "Spanish":
-                return entry.spanish;
+                return entry.languages[0];
+            case "Francés":
+                return entry.languages[1];
+            case "Español":
+                return entry.languages[2];
+            case "Portugués":
+                return entry.languages[3];
+            case "Deutsche":
+                return entry.languages[4];
+            case "中文":
+                return entry.languages[5];
+            case "日本人":
+                return entry.languages[6];
+            case "한국어":
+                return entry.languages[7];
+            case "Indonesia":
+                return entry.languages[8];
+            case "हिं":
+                return entry.languages[9];
+            case "Pусский":
+                return entry.languages[10];
+            case "अरबी भाषा":
+                return entry.languages[11];
             default:
-                return entry.english;
+                return entry.languages[0];
         }
     }
 
@@ -121,13 +161,40 @@ public class Localization : MonoBehaviour
         switch (languageIndex)
         {
             case 0:
-                languageToSet = "English";
+                languageToSet = "English"; // English
                 break;
             case 1:
-                languageToSet = "French";
+                languageToSet = "Francés"; // French
                 break;
             case 2:
-                languageToSet = "Spanish";
+                languageToSet = "Español"; // Spanish
+                break;
+            case 3:
+                languageToSet = "Portugués"; // Portuguese
+                break;
+            case 4:
+                languageToSet = "Deutsche"; // German
+                break;
+            case 5:
+                languageToSet = "中文"; // Chinese
+                break;
+            case 6:
+                languageToSet = "日本人"; // Japonese
+                break;
+            case 7:
+                languageToSet = "한국어"; // Korean
+                break;
+            case 8:
+                languageToSet = "Indonesia"; // Indonesia
+                break;
+            case 9:
+                languageToSet = "हिंदी"; // Hindi
+                break;
+            case 10:
+                languageToSet = "Pусский"; // Russian
+                break;
+            case 11:
+                languageToSet = "अरबी भाषा"; // Arabic
                 break;
             default:
                 success = false;

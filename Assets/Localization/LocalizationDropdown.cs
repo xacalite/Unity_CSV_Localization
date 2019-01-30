@@ -34,8 +34,8 @@ public class LocalizationDropdown : MonoBehaviour
     private void PopulateOptions(Localization.LocEntry le)
     {
         dropdown.options.Clear();
-        dropdown.options.Add(new Dropdown.OptionData(le.english));
-        dropdown.options.Add(new Dropdown.OptionData(le.french));
-        dropdown.options.Add(new Dropdown.OptionData(le.spanish));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[0]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[1]));
+        dropdown.options.Add(new Dropdown.OptionData(le.languages[2]));
     }
 }
