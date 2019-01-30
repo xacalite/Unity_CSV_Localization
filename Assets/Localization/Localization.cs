@@ -10,7 +10,7 @@ public class Localization : MonoBehaviour
     public Text logText;
     private TextAsset localizationText;
 
-    struct LocEntry {
+    public struct LocEntry {
         public string english, french, spanish;
 
         public LocEntry(string l1, string l2, string l3)
@@ -76,6 +76,13 @@ public class Localization : MonoBehaviour
         PlayerPrefs.SetString(locPrefName, language);
     }
 
+
+    public static LocEntry GetLocEntryForKey(string key)
+    {
+        LocEntry entry = new LocEntry();
+        localization.TryGetValue(key, out entry);
+        return entry;
+    }
 
     public static string GetValueByKey(string key)
     {

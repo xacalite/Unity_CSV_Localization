@@ -15,6 +15,8 @@ public class LocalizationDropdown : MonoBehaviour
     void OnEnable()
     {
         dropdown = GetComponent<Dropdown>();
+        Localization.LocEntry locEntry = Localization.GetLocEntryForKey("LANGUAGE");
+        PopulateOptions(locEntry);
         dropdown.onValueChanged.AddListener(OnLanguageIndexChanged);
     }
 
@@ -27,5 +29,13 @@ public class LocalizationDropdown : MonoBehaviour
             Debug.LogError("Dropdwon value does not correspond to a supported language");
             return;
         }
+    }
+
+    private void PopulateOptions(Localization.LocEntry le)
+    {
+        dropdown.options.Clear();
+        dropdown.options.Add(new Dropdown.OptionData(le.english));
+        dropdown.options.Add(new Dropdown.OptionData(le.french));
+        dropdown.options.Add(new Dropdown.OptionData(le.spanish));
     }
 }
