@@ -20,6 +20,7 @@ public class Localization : MonoBehaviour
         }
     }
 
+    private string translationSeparatorChar = "*";
     private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
     private static Dictionary<string, LocEntry> localization;
 
@@ -62,7 +63,7 @@ public class Localization : MonoBehaviour
         {
             //Debug.Log(lines[i]);
             // this is a hard-coded dependency on number of languages, so need to modify this when adding new languages to the LocEntry struct
-            string[] keyAndTranslations = lines[i].Split("*" [0]);
+            string[] keyAndTranslations = lines[i].Split(translationSeparatorChar [0]);
 
             //Debug.Log(keyAndTranslations.Length);
             string key = keyAndTranslations[0];
@@ -116,29 +117,29 @@ public class Localization : MonoBehaviour
         switch (PlayerPrefs.GetString("Language"))
         {
             case "English":
-                return entry.translations[0];
+                return entry.translations[0]; // english
             case "Francés":
-                return entry.translations[1];
+                return entry.translations[1]; // french
             case "Español":
-                return entry.translations[2];
+                return entry.translations[2]; // spanish
             case "Portugués":
-                return entry.translations[3];
+                return entry.translations[3]; // portuguese
             case "Deutsche":
-                return entry.translations[4];
+                return entry.translations[4]; // german
             case "中文":
-                return entry.translations[5];
+                return entry.translations[5]; // chinese simplified
             case "日本人":
-                return entry.translations[6];
+                return entry.translations[6]; // japanese
             case "한국어":
-                return entry.translations[7];
+                return entry.translations[7]; // korean
             case "Indonesia":
-                return entry.translations[8];
+                return entry.translations[8]; // indonesian
             case "हिंदी":
-                return entry.translations[9];
+                return entry.translations[9]; // hindi
             case "Pусский":
-                return entry.translations[10];
-            case "अरबी भाषा":
-                return entry.translations[11];
+                return entry.translations[10]; // russian
+            case "عربى":
+                return entry.translations[11]; // arabic
             default:
                 return entry.translations[0];
         }
