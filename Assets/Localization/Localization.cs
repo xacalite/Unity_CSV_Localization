@@ -59,16 +59,12 @@ public class Localization : MonoBehaviour
             // this is a hard-coded dependency on number of languages, so need to modify this when adding new languages to the LocEntry struct
             string[] keyAndTranslations = lines[i].Split("," [0]);
 
-            /*
-            for (int f = 0; f < keyAndTranslations.Length; f++)
-            {
-                Debug.Log(keyAndTranslations[f]);
-            }
-            */
-
             //Debug.Log(keyAndTranslations.Length);
             string key = keyAndTranslations[0];
-            LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]); 
+
+            // if line below throws an exception, check the Localization.csv file to ensure there is not empty line after the translations (that seems to happen sometimes on saving/export the csv)
+            LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]);
+
             localization.Add(key, locEntry);
         }
 
