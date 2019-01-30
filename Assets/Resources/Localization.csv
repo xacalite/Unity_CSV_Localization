@@ -1,3 +1,4 @@
-GREETING,hello world,bonjour monde,hola mundo
-SMALLTALK,nice to meet you,ravi de vous rencontrer,encantada de conocerte 
-FAREWELL,goodbye,au revoir,adiós
+LANGUAGE,English,Francés ,Español ,Portugués ,Deutsche,中文 ,日本人,한국어,Indonesia,हिंदी,Pусский,अरबी भाषा
+GREETING,hello world,bonjour monde,hola mundo,olá mundo ,hallo welt,你好，世界 ,こんにちは世界,안녕 세상,halo dunia,नमस्ते दुनिया,Привет мир,नमस्ते दुनिया
+SMALLTALK,nice to meet you,ravi de vous rencontrer,encantada de conocerte ,prazer em conhecê-lo ,"freut mich, dich kennenzulernen ",很高兴见到你 ,はじめまして,만나서 반갑습니다,senang bertemu denganmu,आपसे मिलकर अच्छा लगा,рад тебя видеть,आपसे मिलकर अच्छा लगा
+FAREWELL,goodbye,au revoir,adiós,tchau,auf wiedersehen,再见,さようなら,안녕,selamat tinggal,अलविदा,Прощай,अलविदा
