@@ -26,7 +26,6 @@ public class Localization : MonoBehaviour
     public delegate void LanguageChanged(int index);
     public static event LanguageChanged OnLanguageChanged;
 
-    // Start is called before the first frame update
     void Awake()
     {
         if (string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName))) 
@@ -134,7 +133,7 @@ public class Localization : MonoBehaviour
                 return entry.translations[7];
             case "Indonesia":
                 return entry.translations[8];
-            case "हिं":
+            case "हिंदी":
                 return entry.translations[9];
             case "Pусский":
                 return entry.translations[10];
@@ -148,7 +147,7 @@ public class Localization : MonoBehaviour
     public static bool TrySetLanguageByIndex(int languageIndex)
     {
         string languageToSet = "English"; // default to English if index unsupported
-        bool success; // only unsuccessful if default case is reached
+        bool success;
 
         LocEntry languageEntry = GetLocEntryForKey("LANGUAGE");
         if (languageIndex >= languageEntry.translations.Length)
