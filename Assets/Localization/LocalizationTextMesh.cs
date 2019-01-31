@@ -32,6 +32,7 @@ public class LocalizationTextMesh : MonoBehaviour
     public void SetLocalizationKey(string newKey)
     {
         localizationKey = newKey;
+        textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
     }
 }
 
