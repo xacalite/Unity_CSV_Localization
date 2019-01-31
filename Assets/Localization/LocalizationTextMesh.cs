@@ -1,21 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /*
- * Drag and drop this object on a Unity UI Text object for which you want to use a CSV localization key
+ * Drag and drop this object on a Unity Text Mesh for which you want to use a CSV localization key
  * */
 
-[RequireComponent(typeof(Text))]
-public class LocalizationText : MonoBehaviour
+[RequireComponent(typeof(TextMesh))]
+public class LocalizationTextMesh : MonoBehaviour
 {
-    private Text textToLocalize;
+    private TextMesh textToLocalize;
     public string localizationKey = "GREETING";
 
     private void OnEnable()
     {
-        textToLocalize = GetComponent<Text>();
+        textToLocalize = GetComponent<TextMesh>();
         textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
         Localization.OnLanguageChanged += ChangeText;
     }
