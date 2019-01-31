@@ -44,7 +44,7 @@ public class Localization : MonoBehaviour
             Debug.LogError("Null reference exception on localizationText; is the csv file open and locked so it can't be used by Unity?");
         }
 
-        if (string.IsNullOrEmpty(localizationText.text))
+        if (string.IsNullOrEmpty(localizationText.text)) // get null ref on this if there is a /n at end of csv file
         {
             string nullContentError = "Failed to find any localization data";
             Debug.Log(nullContentError);
