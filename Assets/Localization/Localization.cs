@@ -23,7 +23,7 @@ public class Localization : MonoBehaviour
     private static string locPrefName = "Language"; // the string for the Unity PlayerPref that will store type of language
     private static Dictionary<string, LocEntry> localization;
 
-    public delegate void LanguageChanged(int index);
+    public delegate void LanguageChanged();
     public static event LanguageChanged OnLanguageChanged;
 
     void Awake()
@@ -160,7 +160,7 @@ public class Localization : MonoBehaviour
         Debug.Log("Language set to " + PlayerPrefs.GetString(locPrefName));
 
         if (OnLanguageChanged != null) {
-            OnLanguageChanged(languageIndex);
+            OnLanguageChanged();
             //Debug.Log("Broadcast change to Localization Text objects");
         }
         else
