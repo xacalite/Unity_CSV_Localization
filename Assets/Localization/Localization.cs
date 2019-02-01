@@ -108,9 +108,10 @@ public class Localization : MonoBehaviour
         {
             return "LOC_ERROR_1";
         }
+        //Debug.Log("for key - " + key + ", player prefs is - " + PlayerPrefs.GetString("Language"));
 
-        // To-do: last remaining hardcoded string dependency; these values must match those for the "LANGUAGE" key in the csv file
-        switch (PlayerPrefs.GetString("Language"))
+        // trimming and normalizing the player pref fixes the bug with loc not working for the last dropdown input o_O
+        switch (PlayerPrefs.GetString(locPrefName).Trim().Normalize())
         {
             case "English":
                 return entry.translations[0]; // english
