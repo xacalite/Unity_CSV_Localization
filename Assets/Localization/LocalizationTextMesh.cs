@@ -15,7 +15,6 @@ public class LocalizationTextMesh : MonoBehaviour
     private void OnEnable()
     {
         textToLocalize = GetComponent<TextMesh>();
-        //Debug.Log("localize " + gameObject.name + " for " + localizationKey);
         textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
         Localization.OnLanguageChanged += ChangeText;
     }
