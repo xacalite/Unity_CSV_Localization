@@ -106,7 +106,8 @@ public class Localization : MonoBehaviour
 
         if (entry.translations == null)
         {
-            return "LOC_ERROR_1";
+            //return "LOC_ERROR_1";
+            return key;
         }
 
         // To-do: last remaining hardcoded string dependency; these values must match those for the "LANGUAGE" key in the csv file
@@ -134,8 +135,6 @@ public class Localization : MonoBehaviour
                 return entry.translations[9]; // hindi
             case "Pусский":
                 return entry.translations[10]; // russian
-            case "عربى":
-                return entry.translations[11]; // arabic
             default:
                 return entry.translations[0];
         }
