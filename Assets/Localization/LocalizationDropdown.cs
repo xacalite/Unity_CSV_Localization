@@ -23,6 +23,7 @@ public class LocalizationDropdown : MonoBehaviour
 
     private void OnLanguageIndexChanged(int value)
     {
+        Debug.Log("Language index changed via dropdown");
         bool success = Localization.TrySetLanguageByIndex(value);
         if (success) { return; }
         else

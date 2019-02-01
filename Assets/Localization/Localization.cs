@@ -149,6 +149,7 @@ public class Localization : MonoBehaviour
         LocEntry languageEntry = GetLocEntryForKey("LANGUAGE");
         if (languageIndex >= languageEntry.translations.Length)
         {
+            Debug.Log("Unsuccessful cannot set language; using default");
             success = false;
         }
         else
@@ -161,7 +162,7 @@ public class Localization : MonoBehaviour
 
         if (OnLanguageChanged != null) {
             OnLanguageChanged();
-            //Debug.Log("Broadcast change to Localization Text objects");
+            Debug.Log("Broadcast change to Localization Text objects");
         }
         else
         {
