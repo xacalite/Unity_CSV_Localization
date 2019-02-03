@@ -54,9 +54,8 @@ public class Localization : MonoBehaviour
         // if data is retrieved, split up text from CSV file
         localization = new Dictionary<string, LocEntry>();
         //Debug.Log(fileText);
-        string[] lines = localizationText.text.Split(new[] { Environment.NewLine },
-                                        StringSplitOptions.None);
-
+        string[] lines = localizationText.text.Split("\n" [0] );
+ 
         for (int i = 0; i < lines.Length; i++) // split method grabs an extra empty line so minus 1 to loop
         {
             //Debug.Log(lines[i]);
@@ -73,8 +72,16 @@ public class Localization : MonoBehaviour
                 supportedLanguageTranslations.Add(keyAndTranslations[t]);
             }
             LocEntry locEntry = new LocEntry(supportedLanguageTranslations.ToArray());
-            //LocEntry locEntry = new LocEntry(keyAndTranslations[1], keyAndTranslations[2], keyAndTranslations[3]);
 
+            /*
+            string words = "";
+            for (int f = 0; f < locEntry.translations.Length; f++)
+            {
+                words += locEntry.translations[f] + ",";
+            }
+            Debug.Log(locEntry.translations.Length.ToString());
+            Debug.Log(words);
+            */
             localization.Add(key, locEntry);
         }
     }
