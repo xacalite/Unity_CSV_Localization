@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Localization : MonoBehaviour
 {
     private TextAsset localizationText;
+    public bool setLocFromSystemLanguageOnStart = true;
 
     public struct LocEntry {
 
@@ -28,6 +29,13 @@ public class Localization : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log(Application.systemLanguage.ToString());
+        if (setLocFromSystemLanguageOnStart && string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName)))
+        {
+            Debug.Log("Language has not been stored; setting from system language");
+            SetLocFromSystemLanguage();
+        }
+
         if (string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName))) 
         {
             PlayerPrefs.SetString(locPrefName, "English");
@@ -83,6 +91,57 @@ public class Localization : MonoBehaviour
             Debug.Log(words);
             */
             localization.Add(key, locEntry);
+        }
+    }
+
+    private void SetLocFromSystemLanguage()
+    {
+        // there is no Application.systemLanguage for Hindi...
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.English:
+                SetLanguage("English");
+                break;
+            case SystemLanguage.French:
+                SetLanguage("Francés");
+                break;
+            case SystemLanguage.Spanish:
+                SetLanguage("Español");
+                break;
+            case SystemLanguage.Portuguese:
+                SetLanguage("Portugués");
+                break;
+            case SystemLanguage.German:
+                SetLanguage("Deutsche");
+                break;
+            case SystemLanguage.Chinese:
+                SetLanguage("中文");
+                break;
+            case SystemLanguage.ChineseSimplified:
+                SetLanguage("中文");
+                break;
+            case SystemLanguage.ChineseTraditional:
+                SetLanguage("中文");
+                break;
+            case SystemLanguage.Japanese:
+                SetLanguage("日本人");
+                break;
+            case SystemLanguage.Korean:
+                SetLanguage("한국어");
+                break;
+            case SystemLanguage.Indonesian:
+                SetLanguage("Indonesia");
+                break;
+            case SystemLanguage.Russian:
+                SetLanguage("Pусский");
+                break;
+            case SystemLanguage.Arabic:
+                SetLanguage("عربى");
+                break;
+            default:
+                Debug.Log("Language not recognized");
+                SetLanguage("English");
+                break;
         }
     }
 
