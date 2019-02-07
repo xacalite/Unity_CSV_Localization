@@ -18,13 +18,13 @@ public class LocalizationDropdown : MonoBehaviour
         Localization.LocEntry locEntry = Localization.GetLocEntryForKey("LANGUAGE");
         PopulateOptions(locEntry);
         dropdown.value = Localization.GetIndexFromPlayerPref();
-        dropdown.onValueChanged.AddListener(OnLanguageIndexChanged);
+        //dropdown.onValueChanged.AddListener(OnLanguageIndexChanged);
     }
 
-    private void OnLanguageIndexChanged(int value)
+    public void OnLanguageIndexChanged()
     {
         //Debug.Log("Language index changed via dropdown");
-        bool success = Localization.TrySetLanguageByIndex(value);
+        bool success = Localization.TrySetLanguageByIndex(dropdown.value);
         if (success) { return; }
         else
         {
