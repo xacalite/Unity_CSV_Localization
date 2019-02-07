@@ -29,7 +29,6 @@ public class Localization : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(Application.systemLanguage.ToString());
         if (setLocFromSystemLanguageOnStart && string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName)))
         {
             Debug.Log("Language has not been stored; setting from system language");
