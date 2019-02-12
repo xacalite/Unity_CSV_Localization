@@ -21,6 +21,11 @@ public class LocalizationDropdown : MonoBehaviour
         dropdown.onValueChanged.AddListener(OnLanguageIndexChanged);
     }
 
+    private void OnDisable()
+    {
+        dropdown.onValueChanged.RemoveListener(OnLanguageIndexChanged);
+    }
+
     private void OnLanguageIndexChanged(int value)
     {
         bool success = Localization.TrySetLanguageByIndex(value);
