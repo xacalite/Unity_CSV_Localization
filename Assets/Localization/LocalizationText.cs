@@ -10,7 +10,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class LocalizationText : MonoBehaviour
 {
-    public Text textToLocalize;
+    private Text textToLocalize;
     public string localizationKey = "GREETING";
 
     private void OnEnable()
