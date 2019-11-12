@@ -24,7 +24,7 @@ public class LocalizationTextMesh : MonoBehaviour
         Localization.OnLanguageChanged -= ChangeText;
     }
 
-    void ChangeText()
+    public void ChangeText()
     {
         textToLocalize.text = Localization.GetTranslationByKey(localizationKey);
     }
