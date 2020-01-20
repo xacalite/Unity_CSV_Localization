@@ -207,6 +207,15 @@ public class Localization : MonoBehaviour
         }
     }
 
+    public static bool CheckLocalization()
+    {
+        if (localization == null || localization.Values == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public static bool TrySetLanguageByIndex(int languageIndex)
     {
         string languageToSet = "English"; // default to English if index unsupported
