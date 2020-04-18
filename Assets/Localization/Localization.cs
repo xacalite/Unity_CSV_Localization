@@ -10,6 +10,8 @@ public class Localization : MonoBehaviour
     private TextAsset localizationText;
     public bool setLocFromSystemLanguageOnStart = true;
 
+    private static string systemLanguageNotSupportedPlayerPref = "SystemLanguageIsSupported";
+
     public struct LocEntry {
 
         public string[] translations;
@@ -29,7 +31,7 @@ public class Localization : MonoBehaviour
 
     void Awake()
     {
-        if (setLocFromSystemLanguageOnStart && string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName)))
+        if (setLocFromSystemLanguageOnStart && !PlayerPrefs.HasKey(locPrefName))
         {
             Debug.Log("Language has not been stored; setting from system language");
             SetLocFromSystemLanguage();
@@ -37,6 +39,7 @@ public class Localization : MonoBehaviour
 
         if (string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName))) 
         {
+            Debug.Log("Language string is null or empty; defaulting to English");
             PlayerPrefs.SetString(locPrefName, "English");
         }
 
@@ -91,10 +94,14 @@ public class Localization : MonoBehaviour
             */
             localization.Add(key, locEntry);
         }
+
+        Debug.Log("System language is supported = " + IsSystemLanguageSupported());
     }
 
     private void SetLocFromSystemLanguage()
     {
+        PlayerPrefs.SetInt(systemLanguageNotSupportedPlayerPref, 0);
+
         // there is no Application.systemLanguage for Hindi...
         switch (Application.systemLanguage)
         {
@@ -138,9 +145,23 @@ public class Localization : MonoBehaviour
                 SetLanguage("عربى");
                 break;
             default:
-                Debug.Log("Language not recognized");
+                Debug.Log("Language not supported");
+                PlayerPrefs.SetInt(systemLanguageNotSupportedPlayerPref, 1);
                 SetLanguage("English");
                 break;
+        }
+    }
+
+    public static bool IsSystemLanguageSupported()
+    {
+        int flag = PlayerPrefs.GetInt(systemLanguageNotSupportedPlayerPref);
+        if (flag == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
