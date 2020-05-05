@@ -164,7 +164,7 @@ public class Localization : MonoBehaviour
         if (localization == null)
         {
 
-            Debug.Log("Localization dictionary is null; ensure Localization.cs is before LocalizationText.cs in Script Execution Order");
+            Debug.Log("Localization dictionary is null when checking key " + key + "; ensure Localization.cs is before LocalizationText.cs in Script Execution Order");
             return "LOC_ERROR_0";
         }
         localization.TryGetValue(key, out entry);
