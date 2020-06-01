@@ -11,9 +11,9 @@ using UnityEngine.UI;
 public class LocalizationTextCrossPlatform : MonoBehaviour
 {
     private Text textToLocalize;
-    public string defaultLocalizationKey = "Default loc text";
-    public string iosLocalizationKey = "IOS loc text";
-    public string androidLocalizationKey = "Android loc text";
+    public string defaultLocalizationKey = "DEFAULT_KEY";
+    public string iosLocalizationKey = "IOS_KEY";
+    public string androidLocalizationKey = "ANDROID_KEY";
 
     private void OnEnable()
     {
