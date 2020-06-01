@@ -12,8 +12,8 @@ public class LocalizationTextCrossPlatform : MonoBehaviour
 {
     private Text textToLocalize;
     public string defaultLocalizationKey = "Default loc text";
-    public string iosLocalizationKey = "Default loc text";
-    public string androidLocalizationKey = "Default loc text";
+    public string iosLocalizationKey = "IOS loc text";
+    public string androidLocalizationKey = "Android loc text";
 
     private void OnEnable()
     {
