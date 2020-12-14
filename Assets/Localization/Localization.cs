@@ -233,7 +233,7 @@ public class Localization : MonoBehaviour
         }
         languageToSet = languageEntry.translations[languageIndex];
         PlayerPrefs.SetString(locPrefName, languageToSet);
-        Debug.Log("Language set to " + PlayerPrefs.GetString(locPrefName));
+        //Debug.Log("Language set to " + PlayerPrefs.GetString(locPrefName));
 
         if (OnLanguageChanged != null) {
             OnLanguageChanged();
