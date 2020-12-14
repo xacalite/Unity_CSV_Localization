@@ -31,7 +31,7 @@ public class Localization : MonoBehaviour
     {
         if (setLocFromSystemLanguageOnStart && string.IsNullOrEmpty(PlayerPrefs.GetString(locPrefName)))
         {
-            Debug.Log("Language has not been stored; setting from system language");
+            //Debug.Log("Language has not been stored; setting from system language");
             SetLocFromSystemLanguage();
         }
 
